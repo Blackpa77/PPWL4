@@ -40,7 +40,23 @@ const app = new Elysia()
       }),
     }
   )
-  
+
+  // PRAKTIKUM 3
+  .get(
+    "/stats",
+    () => {
+      return {
+        total: 150,
+        active: 45,
+      };
+    },
+    {
+      response: t.Object({
+        total: t.Number(),
+        active: t.Number(),
+      }),
+    }
+  )
   .listen(3000);
 
 console.log(`🦊 Elysia validation server is running at ${app.server?.hostname}:${app.server?.port}`);
