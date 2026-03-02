@@ -30,3 +30,19 @@ const app = new Elysia()
       },
     }
   )
+
+  //PRAKTIKUM 6
+  .get(
+    "/product",
+    () => {
+      return { id: 1, name: "Laptop" }; 
+    },
+    {
+      afterHandle({ response }) {
+        return {
+          success: true,
+          data: response, 
+        };
+      },
+    }
+  )
