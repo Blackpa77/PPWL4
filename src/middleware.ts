@@ -46,3 +46,30 @@ const app = new Elysia()
       },
     }
   )
+
+  //PRAKTIKUM 7
+  .post(
+    "/login",
+    ({ body }) => {
+      return { success: true, message: "Login OK" };
+    },
+    {
+      body: t.Object({
+        email: t.String({ format: "email" }),
+        password: t.String({ minLength: 1 }),
+      }),
+    }
+  )
+  .onError(({ code, set }) => {
+    if (code === "VALIDATION") {
+      set.status = 400;
+      return {
+        success: false,
+        error: "Validation Error",
+      };
+    }
+  })
+
+  .listen(3000);
+
+console.log(`🦊 Elysia middleware server is running at ${app.server?.hostname}:${app.server?.port}`);
