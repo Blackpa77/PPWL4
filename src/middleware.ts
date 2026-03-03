@@ -3,6 +3,16 @@ import { openapi } from "@elysiajs/openapi";
 
 const app = new Elysia()
   .use(openapi())
+  
+    .onError(({ code, set }) => {
+    if (code === "VALIDATION") {
+      set.status = 400;
+      return {
+        success: false,
+        error: "Validation Error",
+      };
+    }
+  })
 
 //PRAKTIKUM 4
   .onRequest(({ request, set }) => {
