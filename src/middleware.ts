@@ -1,6 +1,8 @@
 import { Elysia, t } from "elysia";
+import { openapi } from "@elysiajs/openapi";
 
 const app = new Elysia()
+  .use(openapi())
 
 //PRAKTIKUM 4
   .onRequest(({ request, set }) => {
